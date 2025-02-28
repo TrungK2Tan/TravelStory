@@ -31,8 +31,3 @@ npm install --save react-toastify
 npm i react-modal
 //chon ngay thang su dung 
 npm i react-day-picker
-
-
-  <button className="btn-small btn-delete" onClick={onClose}>
-                <MdDeleteOutline className="text-lg"/> Delete
-            </button>
