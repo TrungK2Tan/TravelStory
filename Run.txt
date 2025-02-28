@@ -1,0 +1,38 @@
+tìm font google thích họp và lên trang chủ tailwindcss để install và connect 
+
+npm i react-router-dom
+import vafo app.jsx va main.jsx 
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+////////////////////////////////////
+setup Backend
+npm init
+npm i express jsonwebtoken mongoose nodemon dotenv cors bcrypt
+
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+để lọc cái accesstoken
+npm i multer
+
+add them vao frontend
+npm i moment
+
+//de tao thong bao 
+npm install --save react-toastify
+
+//de open modal nho nho
+npm i react-modal
+//chon ngay thang su dung 
+npm i react-day-picker
+
+
+  <button className="btn-small btn-delete" onClick={onClose}>
+                <MdDeleteOutline className="text-lg"/> Delete
+            </button>
