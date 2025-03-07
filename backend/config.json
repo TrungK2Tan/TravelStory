@@ -1,8 +1,6 @@
 {
-<<<<<<< HEAD
-    "connectionString":"mongodb+srv://trungtan25112k2://@travelstory.zxv3n.mongodb.net/?retryWrites=true&w=majority&appName=travelstory"
-=======
+
     "connectionString":"mongodb+srv://trungtan25112k2:<><><>@travelstory.zxv3n.mongodb.net/?retryWrites=true&w=majority&appName=travelstory"
->>>>>>> 27be56d719eb68f5c986ed6b579db6b5a01a8195
+
 
 }
