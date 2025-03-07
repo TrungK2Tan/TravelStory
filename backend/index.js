@@ -1,5 +1,4 @@
 require("dotenv").config();
-const config = require("./config.json");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const express = require("express");
@@ -13,8 +12,16 @@ const upload = require("./multer");
 const fs = require("fs")
 const path = require("path")
 
-mongoose.connect(config.connectionString);
-
+// ✅ Sử dụng biến môi trường thay vì config.json
+const mongoURI = process.env.MONGO_URI;
+if (!mongoURI) {
+  console.error("❌ MONGO_URI is not defined in .env");
+  process.exit(1); // Dừng server nếu không có URI
+}
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" }));
