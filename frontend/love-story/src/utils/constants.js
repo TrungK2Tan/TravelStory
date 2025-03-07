@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://travel-story-backend-cgeb.onrender.com'
+export const BASE_URL = 'https://travel-story-backend-mwrg.onrender.com'
