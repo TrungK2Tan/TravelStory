@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-
+const cloudinary = require("cloudinary").v2;
 const User = require("./models/user.model");
 const TravelStory = require("./models/travelStory.model");
 const { authenticateToken } = require("./utilities");
@@ -29,7 +29,12 @@ const port = process.env.PORT || 8000;
 
 // Debug: Check if ACCESS_TOKEN_SECRET is loaded
 // console.log("Access Token Secret:", process.env.ACCESS_TOKEN_SECRET);
-
+// Cấu hình Cloudinary từ file .env
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 // Create account
 app.post("/create-account", async (req, res) => {
     const { fullName, email, password } = req.body;
@@ -285,20 +290,21 @@ app.get("/search",authenticateToken,async(req,res)=>{
 })
 
 //Route to handle image upload
-app.post("/image-upload",upload.single("image"),async(req,res)=>{
-    try{
-        if(!req.file){
-            return res
-            .status(400)
-            .json({error:true,message:"No image uploaded"});
+app.post("/image-upload", upload.single("image"), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: true, message: "No image uploaded" });
         }
 
-        const imageUrl = `http://localhost:8000/uploads/${req.file.filename}`;
-        res.status(200).json({imageUrl});
-    }catch(error){
-        res.status(500).json({error:true, message:error.message})
+        // Lấy URL ảnh sau khi upload lên Cloudinary
+        const imageUrl = req.file.path;
+
+        res.status(200).json({ imageUrl });
+    } catch (error) {
+        res.status(500).json({ error: true, message: error.message });
     }
-})
+});
+
 
 //Delete an image from uploads folder
 app.delete("/delete-image",async(req,res)=>{
